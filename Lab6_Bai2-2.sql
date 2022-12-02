@@ -1,0 +1,10 @@
+﻿CREATE TRIGGER checktongUpdate_nvphai ON NHANVIEN AFTER UPDATE AS
+BEGIN
+DECLARE @tong_nam INT, @tong_nu INT;
+SET @tong_nam = (SELECT PHAI FROM NHANVIEN WHERE PHAI LIKE N'NAM')
+SET @tong_nu = (SELECT PHAI FROM NHANVIEN WHERE PHAI LIKE N'NỮ');
+SELECT @tong_nam = COUNT(*) FROM inserted
+SELECT @tong_nu = COUNT(*) FROM inserted
+PRINT N'TONG NHAN VIEN NAM' + @tong_nam
+PRINT N'TONG NHAN VIEN NU' +@tong_nu
+END
